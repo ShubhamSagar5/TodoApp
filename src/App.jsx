@@ -8,10 +8,11 @@ import TodoItem1 from './components/TodoItem1'
 import TodoItem2 from './components/TodoItem2'
 import Item from './components/Item'
 import Items from './components/Items'
+import WelcomeMess from './components/WelcomeMess'
 
 function App() {
   
-  const itemList = [{
+  const itemsList = [{
     name:"Buy The Milk",
     dueDate:"4/12/2023",
 
@@ -28,12 +29,30 @@ function App() {
   },
   
 ]
+const [itemList,setItemList] = useState([])
 
+const handleBtnClick = (todoName,dueDate) => {
+  const newItem = [...itemList,{
+    name:todoName,
+    dueDate:dueDate
+  }];
+
+  setItemList(newItem)
+}
+
+const handleDeleBtnClick = (taskName) => {
+    const newItem = itemList.filter(item => item.name !== taskName)
+    setItemList(newItem)
+  }
+  
   return (
     <center>
     <Header/>
-    <AppTodo/>
-    <Items itemList={itemList}/>
+    <AppTodo onBtnClick={handleBtnClick}/>
+    {
+      itemList.length === 0 && <WelcomeMess/>
+    }
+    <Items itemList={itemList} onBtnClick={handleDeleBtnClick}/>
 
   
 
