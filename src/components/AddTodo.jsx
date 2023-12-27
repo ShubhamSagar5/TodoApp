@@ -1,7 +1,9 @@
-import { useRef, useState } from "react"
+import { useContext, useRef, useState } from "react"
+import { ToDoItemsContext } from "../store/ToDoItemsStore"
 
-const AddTodo = ({onBtnClick}) => {
+const AddTodo = () => {
 
+  const {addTask} = useContext(ToDoItemsContext)
   // const [todoName,setTodoName] = useState()
   // const [dueDate,setDueDate] = useState()
 
@@ -27,7 +29,7 @@ const AddTodo = ({onBtnClick}) => {
     // setDueDate("")
     todoNameElement.current.value =''
     dueDateElement.current.value=''
-     onBtnClick(todoName,dueDate)
+     addTask(todoName,dueDate)
   }
 
     return (

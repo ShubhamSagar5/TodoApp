@@ -1,12 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Item from './Item'
+import { ToDoItemsContext } from '../store/ToDoItemsStore'
 
-const Items = ({itemList,onBtnClick}) => {
+const Items = () => {
+  
+  const {items} = useContext(ToDoItemsContext)
+
   return (
     <div className='items-container'>
 
     {
-        itemList.map(item => <Item todoName={item.name} todoDate={item.dueDate} onBtnClick={onBtnClick}/>)
+        items.map(item => <Item todoName={item.name} todoDate={item.dueDate} />)
     }
    
    
